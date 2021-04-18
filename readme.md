@@ -14,10 +14,6 @@ This code will support the ability to choose:
 
 * the sourceURL
 
-* headers that are sent to SumoLogic
-
-* support for a configuration file, to specify the above in a configuration file
-
 License
 =======
 
@@ -39,5 +35,10 @@ limitations under the License.
 Support
 =======
 
-Feel free to e-mail me with issues to: wschmidt@sumologic.com
+Feel free to e-mail me with issues to: 
+
+* wschmidt@sumologic.com
+
+* wayne.kirk.schmidt@gmail.com
+
 I will provide "best effort" fixes and extend the scripts.
