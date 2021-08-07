@@ -100,6 +100,7 @@ def publish_data(publishtargetlist,publishurl):
         headers['Content-Type'] = 'text/plain'
         headers['Accept'] = 'text/plain'
         headers['X-Sumo-Category'] = CATEGORY
+        mimetype = "text/plain"
 
         with open(publishtarget, mode='r') as inputfile:
             file_extension = os.path.splitext(publishtarget)[1][1:]
