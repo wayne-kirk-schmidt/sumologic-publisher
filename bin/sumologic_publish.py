@@ -8,13 +8,13 @@ This script takes a file and publishes the file to a SumoLogic endpoint.
 It will try deduce the file type from the extension.  The default will be text.
 
 Usage:
-    $ python  sumpologic-publish [ options ]
+    $ python  sumologic-publish [ options ]
 
 Style:
     Google Python Style Guide:
     http://google.github.io/styleguide/pyguide.html
 
-    @name           sumpologic-publish
+    @name           sumologic-publish
     @version        1.0.0
     @author-name    Wayne Schmidt
     @author-email   wschmidt@sumologic.com
