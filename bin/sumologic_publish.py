@@ -15,14 +15,14 @@ Style:
     http://google.github.io/styleguide/pyguide.html
 
     @name           sumologic-publish
-    @version        1.0.0
+    @version        2.0.0
     @author-name    Wayne Schmidt
     @author-email   wschmidt@sumologic.com
-    @license-name   GNU GPL
-    @license-url    http://www.gnu.org/licenses/gpl.html
+    @license-name   Apache
+    @license-url    https://www.apache.org/licenses/LICENSE-2.0
 """
 
-__version__ = '1.0.0'
+__version__ = '2.0.0'
 __author__ = "Wayne Schmidt (wschmidt@sumologic.com)"
 
 import json
@@ -31,18 +31,23 @@ import datetime
 import os
 import sys
 import requests
-sys.dont_write_bytecode = 1
 import mimemap
+
+sys.dont_write_bytecode = 1
 
 PARSER = argparse.ArgumentParser(description="""
 A way to publish a set of files to Sumo Logic using a HTTPS endpoint
 """)
 
 PARSER.add_argument('-u', metavar='<urlsource>', dest='SUMOURL', help='set Sumologic URL')
+
 PARSER.add_argument('-s', metavar='<filesource>', dest='FILESRC', help='set data sources')
+
 PARSER.add_argument('-c', metavar='<category>', dest='CATEGORY', help='set source category')
+
 PARSER.add_argument("-v", type=int, default=0, metavar='<verbose>', \
                     dest='verbose', help="more verbose")
+
 ARGS = PARSER.parse_args()
 
 CURRENT = datetime.datetime.now()
