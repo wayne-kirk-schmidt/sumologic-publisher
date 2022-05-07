@@ -1,33 +1,29 @@
 Business Background
 ===================
 
-As development and software release cycles speed up, observability now has to adapt to keep up with those changes. Your monitoring focuses on how your site is running, how applications are deployed, and how well are you managing your tools.
+When you are building your applications, sometimes your machine data won't be in the form of log files. What then?
 
-Changes to monitoring and visualization matter, since your teams rely on those tools to help you determing what is going on within your business. It stands to reason then, knowing what has changed within your environment just became very important.
-
-Here at Sumo Logic, we all teams alike, providing visibility across teams, pipelines, and services. This allows you to understand how your work is flowing and where there are blockages, so you can take action to keep your business running.
+For modern Continuous Integration and Deployment, we sometimes need to have documentation ingested, outside the bounds of JSON or CSV.
 
 Business Challenge
 ==================
 
-Monitoring can be used by your whole organization, so changes can be tricky. You want to strike a balance between over communicating and potentially missing an important stakeholder on changes to monitoring configuration, content or correlation.
+We need to be able to have our Sumo Logic environment be able to accept output from our CI/CD pipeline and easily process that input.
 
-Different teams mean different business goals, business requirements, and response times. And since we may be working remotely it becomes more important to communicate important changes. But, what changes should be reported to what teams?
+Since our pipelines will be based on commands and webhooks our solution needs to embrace being run when a job is completed, started when the job is finished by the platform providing the build.
+
+Also, we need to be able to understand any type of content, not just CSV or JSON, so this extends to PDF files, Microsoft and Google document formats as well; in short, we need to embrace being able to ingest anything and be able to match that file with relevant text within.
 
 Business Cases
 ==============
 
 Here are a sample of questions you want to have answers for to help your teams. Each of these questions deals with change.
 
-* What changes to Sumo Logic queries have happened recently?
+* What documents support the changes we see in our log files?
 
-* What changes to Sumo Logic dashboards have happened recently?
+* Can we build a map of those documents and track changes to those files?
 
-* What changes to Sumo Logic data collectors or sources have happened recently?
-
-* What changes to Sumo Logic policies have happened recently?
-
-* What changes to Sumo Logic users or groups have happened recently?
+* Can we work with the CI/CD pipeline to ingest the files and extract out the text we need?
 
 Business Solution
 =================
@@ -40,8 +36,6 @@ And, best of all, this can be done in several easy steps:
 
 - Create a HTTPS source using these [steps](https://help.sumologic.com/03Send-Data/Sources/02Sources-for-Hosted-Collectors).
 
-- Set up an API key using these [steps](https://help.sumologic.com/Manage/Security/Access-Keys).
-
 - Set up the ingest script following the [readme](../README.md).
 
 - Run the script! Now you can check the source categories for the data you want to see.
@@ -49,7 +43,11 @@ And, best of all, this can be done in several easy steps:
 Business Benefits
 =================
 
-The result is we have the ability to track all of the configuration changes within your Sumo Logic environment from new users to deleted content to changed collectors. Armed with this information, you and other administrators of your Sumo Logic environment can target actions to help your business, communicating changes, sharing content, and other actions.
+We can identify the file types of most of your development environment, and ingest them using the hosted collector.
+
+The result? We can use this tool to help build a map, of the file path, the checksum of the file, and the extracted text.
+
+Couple this with the permissions, ownership, and the date, and we can easily plot the changes within your environment.
 
 Examples
 ========
