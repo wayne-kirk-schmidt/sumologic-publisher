@@ -65,13 +65,13 @@ try:
     SUMOURL = ARGS.SUMOURL
 
 except KeyError as myerror:
-    print('Environment Variable Not Set :: {} '.format(myerror.args[0]))
+    print('Environment Variable Not Set :: {myerror.args[0]}\n')
 
 def main():
     """
     This is the wrapper for the retreival and the publish modules.
     """
-    data_sources = list()
+    data_sources = []
     data_sources = resolve_data_sources(ARGS.FILESRC)
     publish_data(data_sources,SUMOURL)
 
@@ -79,7 +79,7 @@ def resolve_data_sources(filetarget):
     """
     This resolves target into a list of files
     """
-    myfilelist = list()
+    myfilelist = []
     if os.path.isfile(filetarget):
         myfilelist.append(filetarget)
     if os.path.isdir(filetarget):
@@ -88,7 +88,7 @@ def resolve_data_sources(filetarget):
                 myfilelist.append((os.path.join(currentpath, file)))
     for myfile in myfilelist:
         if ARGS.verbose > 2:
-            print('MYFILE: {}'.format(myfile))
+            print(f'Source File: {myfile}')
     return myfilelist
 
 def publish_data(publishtargetlist,publishurl):
@@ -100,38 +100,44 @@ def publish_data(publishtargetlist,publishurl):
 
     for publishtarget in publishtargetlist:
 
-        headers = dict()
+        headers = {}
 
         headers['Content-Type'] = 'text/plain'
         headers['Accept'] = 'text/plain'
         headers['X-Sumo-Category'] = CATEGORY
         mimetype = "text/plain"
 
-        with open(publishtarget, mode='r') as inputfile:
-            file_extension = os.path.splitext(publishtarget)[1][1:]
-            if file_extension:
-                mimetype = mimemap.MIMETYPES[file_extension]
-                headers['Content-Type'] = mimetype
-                headers['Accept'] = mimetype
+        if os.path.isfile(publishtarget):
+            with open(publishtarget, mode='r', encoding='utf8' ) as inputfile:
+                file_extension = os.path.splitext(publishtarget)[1][1:]
+                if file_extension:
+                    mimetype = mimemap.MIMETYPES[file_extension]
+                    headers['Content-Type'] = mimetype
+                    headers['Accept'] = mimetype
 
-            if file_extension == 'json':
-                payload = (json.load(inputfile))
-                postresponse = session.post(publishurl, json=payload, headers=headers).status_code
-            else:
-                payload = (inputfile.read())
-                postresponse = session.post(publishurl, data=payload, headers=headers).status_code
+                if file_extension == 'json':
+                    payload = (json.load(inputfile))
+                    postresponse = session.post(publishurl, json=payload, \
+                                                headers=headers).status_code
+                else:
+                    payload = (inputfile.read())
+                    postresponse = session.post(publishurl, data=payload, \
+                                                headers=headers).status_code
+        else:
+            postresponse = session.post(publishurl, data=publishtarget, \
+                                        headers=headers).status_code
 
-            if ARGS.verbose > 4:
-                print('SUMOLOGIC_ENDPOINT: {}'.format(publishurl))
-                print('SUMOLOGIC_CATEGORY: {}'.format(str(CATEGORY)))
-                print('SUMOLOGIC_RESPONSE: {}'.format(str(postresponse)))
+        if ARGS.verbose > 4:
+            print(f'SUMOLOGIC_ENDPOINT: {publishurl}')
+            print(f'SUMOLOGIC_CATEGORY: {str(CATEGORY)}')
+            print(f'SUMOLOGIC_RESPONSE: {str(postresponse)}')
 
-            if ARGS.verbose > 6:
-                print('HTTPS_APPTYPE: {}'.format(mimetype))
-                print('HTTPS_HEADERS: {}'.format(headers))
+        if ARGS.verbose > 6:
+            print(f'HTTPS_APPTYPE: {mimetype}')
+            print(f'HTTPS_HEADERS: {headers}')
 
-            if ARGS.verbose > 8:
-                print('HTTPS_PAYLOAD: {}'.format(payload))
+        if ARGS.verbose > 8:
+            print(f'HTTPS_PAYLOAD: {payload}')
 
 if __name__ == '__main__':
     main()

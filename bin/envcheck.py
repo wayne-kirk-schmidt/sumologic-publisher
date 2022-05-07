@@ -14,7 +14,10 @@ Style:
     @license-url    https://www.apache.org/licenses/LICENSE-2.0
 """
 
-modulelist = list()
+import sys
+sys.dont_write_bytecode = 1
+
+modulelist = []
 modulelist = [
     'argparse', 'configparser', 'datetime', 'os',
     'sys', 'json', 'requests'
@@ -24,6 +27,6 @@ for module in modulelist:
     try:
         __import__(module)
     except ImportError:
-        print('### Issue ### ToFix ### pip3 install {}'.format(module))
+        print(f'### Issue ### ToFix ### pip3 install {module}\n')
         ISSUES = ISSUES + 1
-print('# Report # {} Issues'.format(ISSUES))
+print(f'# Report # {ISSUES} Issues\n')

@@ -20,7 +20,7 @@ __author__ = "Wayne Schmidt (wayne.kirk.schmidt@gmail.com)"
 import sys
 sys.dont_write_bytecode = 1
 
-MIMETYPES = dict()
+MIMETYPES = {}
 MIMETYPES["pdf"] = "application/pdf"
 MIMETYPES["html"] = "text/html"
 MIMETYPES["htm"] = "text/html"

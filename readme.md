@@ -1,9 +1,9 @@
 Sumo Logic Publish Platform
 ===========================
 
-This is a sample publisher for Sumo Logic sources.
+Ever wanted to have a tool to publish anything to Sumo Logic source category? Here we go.
 
-Currently, this is build as a Python script, and can be extended to other languages.
+Armed with this, you can combine your DevOps and Development practices to publish logs, documents, configuration files.
 
 Features
 ========
@@ -13,6 +13,20 @@ The script supports the ability to choose:
 * the sourceCategory
 
 * the sourceURL
+
+Business Case
+=============
+
+Curious what was the business goals we wanted to solve? 
+
+Please read on in our [writeup](doc/writeup.md)!
+
+Examples
+========
+
+![example1](doc/publisher1.png)
+
+![example2](doc/publisher2.png)
 
 Installing the Scripts
 =======================
