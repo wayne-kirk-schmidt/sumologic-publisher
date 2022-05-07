@@ -1,9 +1,7 @@
 Business Background
 ===================
 
-When you are building your applications, sometimes your machine data won't be in the form of log files. What then?
-
-For modern Continuous Integration and Deployment, we sometimes need to have documentation ingested, outside the bounds of JSON or CSV.
+Building applications, sometimes your machine data won't be in the form of log files. What then? For modern Continuous Integration and Deployment, we sometimes need to have documentation ingested, outside the bounds of JSON or CSV. We need to be able to account for any type of file that your development and support teams use to help their business.
 
 Business Challenge
 ==================
