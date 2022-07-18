@@ -43,7 +43,8 @@ PARSER.add_argument('-u', metavar='<urlsource>', dest='SUMOURL', help='set Sumol
 
 PARSER.add_argument('-s', metavar='<filesource>', dest='FILESRC', help='set data sources')
 
-PARSER.add_argument('-c', metavar='<category>', dest='CATEGORY', help='set source category')
+PARSER.add_argument('-c', metavar='<category>', dest='CATEGORY', \
+                    default='sumologic/publisher', help='set source category')
 
 PARSER.add_argument("-v", type=int, default=0, metavar='<verbose>', \
                     dest='verbose', help="more verbose")
@@ -56,10 +57,7 @@ DSTAMP = CURRENT.strftime("%Y%m%d")
 TSTAMP = CURRENT.strftime("%H%M%S")
 LSTAMP = DSTAMP + '.' + TSTAMP
 
-CATEGORY = 'sumologic/publisher'
-
-if ARGS.CATEGORY:
-    os.environ['CATEGORY'] = ARGS.CATEGORY
+CATEGORY = ARGS.CATEGORY
 
 try:
     SUMOURL = ARGS.SUMOURL
